@@ -1,54 +1,8 @@
 import 'package:flutter/material.dart';
-import './widgets/lyricsCard.dart';
+import 'package:examples/pages/home.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: ListOfCards(),
+    home: Home(),
   ));
-}
-
-class ListOfCards extends StatefulWidget {
-  const ListOfCards({super.key});
-
-  @override
-  State<ListOfCards> createState() => _ListOfCardsState();
-}
-
-class _ListOfCardsState extends State<ListOfCards> {
-  final List<String> lyrics = [
-    'From fairest creatures we desire increase,',
-    'That thereby beauty’s rose might never die,',
-    'But as the riper should by time decrease,',
-    'His tender heir mught bear his memeory:',
-    'But thou, contracted to thine own bright eyes,',
-    'Feed’st thy light’st flame with self-substantial fuel,',
-    'Making a famine where abundance lies,',
-    'Thyself thy foe, to thy sweet self too cruel.',
-    'Thou that art now the world’s fresh ornament',
-    'And only herald to the gaudy spring,',
-    'Within thine own bud buriest thy content',
-    'And, tender churl, makest waste in niggarding.',
-    'Pity the world, or else this glutton be,',
-    'To eat the world’s due, by the grave and thee.'
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueGrey[700],
-          centerTitle: true,
-          title: Text(
-            'Some text',
-            style: TextStyle(
-                fontSize: 24.0,
-                fontWeight: FontWeight.w500,
-                color: Colors.white),
-          ),
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: lyrics.map((el) => lyricCard(lyric: el)).toList(),
-        ));
-  }
 }
