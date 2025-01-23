@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './widgets/lyricsCard.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -47,7 +48,7 @@ class _ListOfCardsState extends State<ListOfCards> {
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: lyrics.map((el) => Card(child: Text(el))).toList(),
+          children: lyrics.map((el) => lyricCard(lyric: el)).toList(),
         ));
   }
 }
