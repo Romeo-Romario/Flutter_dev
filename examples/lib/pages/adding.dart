@@ -26,7 +26,7 @@ class _AddingElState extends State<AddingEl> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              ImageInput(),
+              ImageInputWidget(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(40, 30, 40, 0),
                 child: TextFormField(
