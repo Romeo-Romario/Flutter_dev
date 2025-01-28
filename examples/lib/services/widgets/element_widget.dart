@@ -18,6 +18,7 @@ class ElementWidget extends StatelessWidget {
             Image(
               image: AssetImage(element.imagePath),
               width: 40,
+              height: 40,
             ),
             Column(
               children: [

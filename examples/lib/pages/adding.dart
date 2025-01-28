@@ -1,5 +1,7 @@
 import 'package:examples/services/classes/el.dart';
 import 'package:flutter/material.dart';
+import 'package:examples/services/widgets/image_input_widget.dart';
+import 'package:image_input/image_input.dart';
 
 class AddingEl extends StatefulWidget {
   const AddingEl({super.key});
@@ -24,6 +26,7 @@ class _AddingElState extends State<AddingEl> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              ImageInput(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(40, 30, 40, 0),
                 child: TextFormField(
