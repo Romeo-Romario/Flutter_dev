@@ -24,8 +24,14 @@ class _HomeState extends State<Home> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/adding");
+        onPressed: () async {
+          final result = await Navigator.pushNamed(context, "/adding");
+          if (result == null) {
+            return;
+          }
+          setState(() {
+            cards.add(result as El);
+          });
         },
         child: Icon(
           Icons.add,

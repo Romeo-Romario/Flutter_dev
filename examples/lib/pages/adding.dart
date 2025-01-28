@@ -1,3 +1,4 @@
+import 'package:examples/services/classes/el.dart';
 import 'package:flutter/material.dart';
 
 class AddingEl extends StatefulWidget {
@@ -8,7 +9,6 @@ class AddingEl extends StatefulWidget {
 }
 
 class _AddingElState extends State<AddingEl> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final titleController = TextEditingController();
   final mainTextController = TextEditingController();
   @override
@@ -32,13 +32,6 @@ class _AddingElState extends State<AddingEl> {
                       border: OutlineInputBorder(),
                       hintText: 'Enter title of element',
                       labelText: 'Title'),
-                  validator: (String? value) {
-                    if (titleController.text == null ||
-                        titleController.text.isEmpty) {
-                      return 'Please enter some text';
-                    }
-                    return null;
-                  },
                 ),
               ),
               SizedBox(
@@ -64,16 +57,27 @@ class _AddingElState extends State<AddingEl> {
                         backgroundColor: WidgetStateProperty.all<Color?>(
                             Colors.purple[400])),
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        Navigator.pushReplacementNamed(context, '/home');
-                      } else {
+                      if (titleController.text == null ||
+                          titleController.text.isEmpty) {
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return AlertDialog(
-                              content: Text("Wrong Input"),
+                              content: Text(
+                                "Wrong Input",
+                                textAlign: TextAlign.center,
+                              ),
+                              alignment: Alignment.center,
                             );
                           },
+                        );
+                      } else {
+                        Navigator.pop(
+                          context,
+                          El(
+                            title: titleController.text,
+                            text: mainTextController.text,
+                          ),
                         );
                       }
                     },
