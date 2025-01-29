@@ -7,12 +7,21 @@ class BookInfo {
   final String imagePath;
   final ImageSourceType imageSource;
 
+  // BookInfo({
+  //   required this.title,
+  //   required this.text,
+  //   this.imagePath = 'assets/images/default.png',
+  //   required this.imageSource,
+  // });
+
   BookInfo({
     required this.title,
-    required this.text,
-    required this.imagePath,
-    required this.imageSource,
-  });
+    String? text, // Optional parameter
+    String? imagePath,
+    ImageSourceType? imageSource,
+  })  : text = text ?? "",
+        imagePath = imagePath ?? 'assets/images/default.png',
+        imageSource = imageSource ?? ImageSourceType.asset;
 
   BookInfo.defaultAsset({
     required this.title,

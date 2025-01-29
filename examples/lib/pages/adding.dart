@@ -95,8 +95,8 @@ class _AddingElState extends State<AddingEl> {
                             BookInfo(
                               title: titleController.text,
                               text: mainTextController.text,
-                              imagePath: imagePath!,
-                              imageSource: imageSourceType!,
+                              imagePath: imagePath,
+                              imageSource: imageSourceType,
                             ),
                           );
                         }
