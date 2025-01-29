@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: SafeArea(
         child: Column(
-          children: cards.map((el) => ElementWidget(element: el)).toList(),
+          children: cards.map((el) => BookInfoView(element: el)).toList(),
         ),
       ),
       floatingActionButton: FloatingActionButton(

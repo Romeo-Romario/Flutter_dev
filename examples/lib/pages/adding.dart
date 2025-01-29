@@ -1,4 +1,5 @@
 import 'package:examples/services/models/book_info.dart';
+import 'package:examples/services/models/image_source_type.dart';
 import 'package:examples/services/widgets/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,11 +16,8 @@ class _AddingElState extends State<AddingEl> {
   final titleController = TextEditingController();
   final mainTextController = TextEditingController();
 
-  // final photoIcon = Icon(
-  //   Icons.add_a_photo_outlined,
-  //   color: Colors.white,
-  //   size: 40,
-  // );
+  String? imagePath;
+  ImageSourceType imageSourceType = ImageSourceType.asset;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,11 @@ class _AddingElState extends State<AddingEl> {
                 SizedBox(
                   height: 20,
                 ),
-                ImagePickerView(),
+                ImagePickerView(
+                  onImagepathChanged: (imagePath) => this.imagePath = imagePath,
+                  onImageSourceTypeChanged: (imageSourceType) =>
+                      this.imageSourceType = imageSourceType,
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(40, 30, 40, 0),
                   child: TextFormField(
@@ -90,9 +92,11 @@ class _AddingElState extends State<AddingEl> {
                         } else {
                           Navigator.pop(
                             context,
-                            BookInfo.defaultAsset(
+                            BookInfo(
                               title: titleController.text,
                               text: mainTextController.text,
+                              imagePath: imagePath!,
+                              imageSource: imageSourceType!,
                             ),
                           );
                         }

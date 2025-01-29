@@ -1,6 +1,5 @@
+import 'package:examples/services/models/image_source_type.dart';
 import 'package:flutter/material.dart';
-
-enum ImageSourceType { local, asset, web }
 
 class BookInfo {
   final String title;

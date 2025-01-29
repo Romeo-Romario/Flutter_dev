@@ -1,10 +1,12 @@
+import 'package:examples/services/models/image_source_type.dart';
 import 'package:flutter/material.dart';
 import 'package:examples/services/models/book_info.dart';
+import 'dart:io';
 
-class ElementWidget extends StatelessWidget {
+class BookInfoView extends StatelessWidget {
   final BookInfo element;
 
-  ElementWidget({required this.element, super.key});
+  BookInfoView({required this.element, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,11 @@ class ElementWidget extends StatelessWidget {
       child: ListTile(
         title: Text(element.title),
         subtitle: Text(element.text),
-        leading: Image.asset(element.imagePath),
+        leading: switch (element.imageSource) {
+          ImageSourceType.asset => Image.asset(element.imagePath),
+          ImageSourceType.web => Image.network(element.imagePath),
+          ImageSourceType.local => Image.file(File(element.imagePath)),
+        },
       ),
     );
   }
