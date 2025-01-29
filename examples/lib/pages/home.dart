@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:examples/services/widgets/element_widget.dart';
-import 'package:examples/services/classes/el.dart';
+import 'package:examples/services/models/book_info.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,9 +10,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<El> cards = [
-    El(title: "First one", text: "It was a time long ago I was free"),
-    El(title: "Second one", text: "Non cool cloth no good shoes, and no TV"),
+  List<BookInfo> cards = [
+    BookInfo.defaultAsset(
+        title: "First one", text: "It was a time long ago I was free"),
+    BookInfo.defaultAsset(
+        title: "Second one", text: "Non cool cloth no good shoes, and no TV"),
   ];
 
   @override
@@ -30,7 +32,7 @@ class _HomeState extends State<Home> {
             return;
           }
           setState(() {
-            cards.add(result as El);
+            cards.add(result as BookInfo);
           });
         },
         child: Icon(

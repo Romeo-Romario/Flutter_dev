@@ -1,4 +1,5 @@
-import 'package:examples/services/classes/el.dart';
+import 'package:examples/services/models/book_info.dart';
+import 'package:examples/services/widgets/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -20,14 +21,6 @@ class _AddingElState extends State<AddingEl> {
   //   size: 40,
   // );
 
-  final ImagePicker _picker = ImagePicker();
-  dynamic pickedImage = Icon(
-    Icons.add_a_photo_outlined,
-    color: Colors.white,
-    size: 40,
-  );
-
-  File? imageFile;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,36 +39,7 @@ class _AddingElState extends State<AddingEl> {
                 SizedBox(
                   height: 20,
                 ),
-                GestureDetector(
-                  onTap: () async {
-                    try {
-                      XFile? pickedFile =
-                          await _picker.pickImage(source: ImageSource.gallery);
-                      imageFile = File(pickedFile!.path);
-                      setState(() {
-                        pickedImage = Image.file(imageFile!,
-                            width: 200, height: 200, fit: BoxFit.cover);
-                      });
-                    } catch (e) {
-                      setState(() {
-                        pickedImage = Icon(
-                          Icons.add_a_photo_outlined,
-                          color: Colors.white,
-                          size: 40,
-                        );
-                      });
-                    }
-                  },
-                  child: Container(
-                      width: 200,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: Colors.blueGrey,
-                        borderRadius: BorderRadius.circular(
-                            20.0), // Adjust the radius as needed
-                      ),
-                      child: pickedImage),
-                ),
+                ImagePickerView(),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(40, 30, 40, 0),
                   child: TextFormField(
@@ -126,7 +90,7 @@ class _AddingElState extends State<AddingEl> {
                         } else {
                           Navigator.pop(
                             context,
-                            El(
+                            BookInfo.defaultAsset(
                               title: titleController.text,
                               text: mainTextController.text,
                             ),

@@ -1,45 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:examples/services/classes/el.dart';
+import 'package:examples/services/models/book_info.dart';
 
 class ElementWidget extends StatelessWidget {
-  final El element;
+  final BookInfo element;
 
   ElementWidget({required this.element, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Image(
-              image: AssetImage(element.imagePath),
-              width: 40,
-              height: 40,
-            ),
-            Column(
-              children: [
-                Text(
-                  element.title,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(
-                  height: 1.0,
-                ),
-                Text(
-                  element.text,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
-                )
-              ],
-            )
-          ],
-        ),
+      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      child: ListTile(
+        title: Text(element.title),
+        subtitle: Text(element.text),
+        leading: Image.asset(element.imagePath),
       ),
     );
   }
