@@ -97,12 +97,19 @@ class _ImagePickerViewState extends State<ImagePickerView> {
         return null;
       }
       widget.onImagepathChanged(urlText);
-      // TODO: Fix this
       return Image.network(
         urlText,
         width: 200,
         height: 200,
         fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return Center(
+              child: Text(
+            "Wrong path to image",
+            style: TextStyle(
+                fontSize: 12, fontWeight: FontWeight.w400, color: Colors.white),
+          ));
+        },
       );
     } catch (e) {
       return null;

@@ -46,4 +46,17 @@ class BookInfo {
     required this.text,
     required this.imagePath,
   }) : imageSource = ImageSourceType.web;
+
+  Map<String, dynamic> toJson() => {
+        "title": title,
+        "text": text,
+        "imagePath": imagePath,
+        "ImageSource": imageSource.toString()
+      };
+
+  factory BookInfo.fromJson(Map<String, dynamic> json) => BookInfo(
+      title: json["title"],
+      text: json["text"],
+      imagePath: json["imagePath"],
+      imageSource: parseToImageSourceType(json["ImageSource"]));
 }

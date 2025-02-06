@@ -18,7 +18,8 @@ class BookInfoView extends StatelessWidget {
         leading: switch (element.imageSource) {
           ImageSourceType.asset => Image.asset(element.imagePath),
           ImageSourceType.web => Image.network(element.imagePath),
-          ImageSourceType.local => Image.file(File(element.imagePath)),
+          ImageSourceType.local =>
+            Image(image: FileImage(File(element.imagePath))),
         },
       ),
     );
