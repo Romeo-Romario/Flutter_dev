@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:examples/services/support/image_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:examples/services/widgets/element_widget.dart';
 import 'package:examples/services/models/book_info.dart';
@@ -29,10 +30,10 @@ class _HomeState extends State<Home> {
         actions: [
           TextButton(
             onPressed: clearData,
-            child: Icon(Icons.delete_forever_rounded),
             style: ButtonStyle(
               backgroundColor: WidgetStatePropertyAll<Color>(Colors.green),
             ),
+            child: Icon(Icons.delete_forever_rounded),
           )
         ],
       ),
@@ -119,6 +120,7 @@ class _HomeState extends State<Home> {
   }
 
   void clearData() async {
+    final ImageSaver imageSaver = ImageSaver();
     final SharedPreferencesWithCache prefsWithCache =
         await SharedPreferencesWithCache.create(
       cacheOptions: SharedPreferencesWithCacheOptions(
@@ -126,6 +128,7 @@ class _HomeState extends State<Home> {
       ),
     );
     setState(() {
+      imageSaver.deleteAllUserImages();
       prefsWithCache.clear();
       cards = [
         BookInfo.defaultAsset(

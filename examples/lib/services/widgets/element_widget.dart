@@ -8,7 +8,7 @@ import 'dart:io';
 class BookInfoView extends StatelessWidget {
   final BookInfo element;
 
-  BookInfoView({required this.element, super.key});
+  const BookInfoView({required this.element, super.key});
 
   @override
   Widget build(BuildContext context) {

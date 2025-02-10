@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:examples/services/models/image_source_type.dart';
+import 'package:examples/services/support/image_saver.dart';
 import 'package:examples/services/widgets/dialogs/url_image_input_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -23,7 +24,7 @@ class _ImagePickerViewState extends State<ImagePickerView> {
 
   Image? selectedImage;
   ImageSourceType selectedType = ImageSourceType.local;
-
+  final ImageSaver _imageSaver = ImageSaver();
   @override
   Widget build(BuildContext context) {
     final sourceTypes = ImageSourceType.values
@@ -55,6 +56,7 @@ class _ImagePickerViewState extends State<ImagePickerView> {
           ),
         ),
         // SizedBox(height: 20,),
+        // ignore: sized_box_for_whitespace
         Container(
           width: 250,
           child: SegmentedButton(
@@ -122,8 +124,14 @@ class _ImagePickerViewState extends State<ImagePickerView> {
     if (pickedFile == null) {
       return null;
     }
-    widget.onImagepathChanged(pickedFile.path);
-    final imageFile = File(pickedFile.path);
+
+    // widget.onImagepathChanged(pickedFile.path);
+    // final imageFile = File(pickedFile.path);
+    // return Image.file(imageFile, width: 200, height: 200, fit: BoxFit.cover);
+
+    final imageName = await _imageSaver.saveImage(pickedFile);
+    widget.onImagepathChanged(await _imageSaver.getPathToImage(imageName));
+    final imageFile = await _imageSaver.getSavedImage(imageName);
     return Image.file(imageFile, width: 200, height: 200, fit: BoxFit.cover);
   }
 }
