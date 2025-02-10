@@ -37,9 +37,22 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: SafeArea(
-        child: Column(
-          children: cards.map((el) => BookInfoView(element: el)).toList(),
-        ),
+        child: GridView.builder(
+            primary: false,
+            padding: const EdgeInsets.all(16),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, // Number of columns
+              mainAxisSpacing: 16.0, // Vertical spacing between grid items
+              crossAxisSpacing: 16.0, // Horizontal spacing between grid items
+              childAspectRatio:
+                  3 / 4, // Width-to-height ratio (adjust for taller items)
+            ),
+            itemCount: cards.length,
+            itemBuilder: (context, index) {
+              final element = cards[index];
+              // return cards.map((el) => BookInfoView(element: el)).toList(),}
+              return BookInfoView(element: element);
+            }),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {

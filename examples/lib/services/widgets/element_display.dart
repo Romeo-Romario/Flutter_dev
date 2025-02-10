@@ -67,7 +67,11 @@ class ElementDisplay extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20.0),
-                    border: Border.all(color: Colors.black, width: 2.0)),
+                    border: Border.all(
+                        color: bookInfo.text.isEmpty
+                            ? Colors.transparent
+                            : Colors.black,
+                        width: 2.0)),
               ),
             ),
             SizedBox(
